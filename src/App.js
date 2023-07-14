@@ -4,6 +4,8 @@ import Forgotpassword from './Components/Forgotpassword/Forgotpassword';
 import Updatepassword from './Components/Updatepassword/Updatepassword';
 import Register from './Components/Register/Register';
 import Invalid from './Components/Invalid';
+import Login from './Components/Login/Login';
+import Sucess from './Components/Sucess';
 
 function App() {
 
@@ -25,6 +27,14 @@ function App() {
         <Route exact
           path='/invalid'
           element={<Invalid/>} >
+        </Route>
+        <Route exact
+          path='/login'
+          element={<Login/>} >
+        </Route>
+        <Route exact
+          path='/login/sucess'
+          element={<Sucess/>} >
         </Route>
       </Routes>
     </BrowserRouter>
