@@ -2,27 +2,32 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 
 
 function Updatepassword(props) {
-
-    //changing the page state based on api request
-    const [page, setpage] = useState("")
-
+    const navigate = useNavigate()
+    //changing the button state based on api request
+    
+    const[load,setload]=useState(true)
     //  using useparams hook to get the parameter from url 
     const { token } = useParams()
     // passing token parameter to API FOR VERIFICATION    
     useEffect(() => {
         axios.post(`https://password-reset-0m2v.onrender.com/user/verifyuser/${token}`)
             .then((res) => {
-                setpage(true)
+                if(!res){
+                    navigate("/invalid")
+                }
                 return res
 
             })
 
             .catch((error) => {
-                setpage(false)
+                if(error){
+                    navigate("/invalid")
+                }
                 return error
             })
     }
@@ -47,6 +52,7 @@ function Updatepassword(props) {
             .then((res) => {
                 seterror("")
                 setsuccess(res.data)
+                setload(true)
             })
             .catch((error) => {
 
@@ -56,11 +62,13 @@ function Updatepassword(props) {
                     const { details } = data
                     const { message } = details[0]
                     seterror(message)
+                    setload(true)
                 }
                 else {
 
                     setsuccess("")
                     seterror("Already password updated")
+                    setload(true)
                 }
             })
     }
@@ -68,7 +76,7 @@ function Updatepassword(props) {
         <div className='container'>
             <div className="row justify-content-center">
 
-                {page ? <div className="col-xl-10 col-lg-12 col-md-9">
+                <div className="col-xl-10 col-lg-12 col-md-9">
 
                     <div className="card o-hidden border-0 shadow-lg my-5">
                         <div className="card-body p-0">
@@ -91,8 +99,9 @@ function Updatepassword(props) {
                                                 {successMsg !== null ? <span className='text-success'>{successMsg}</span> : null}
                                                 {errorMsg !== null ? <span className='text-danger'>{errorMsg}</span> : null}
                                             </div>
-                                            <button onClick={submit} className="btn btn-primary btn-user btn-block">
-                                                Reset Password
+                                            <button onClick={(e)=>{submit(e);setload(false)}} className="btn btn-primary btn-user btn-block">
+                                            { load ? <span> Reset Password</span> : <div className='spinner-border text-primary ' role='status'>
+                                                 </div>}
                                             </button>
 
                                         </form>
@@ -106,7 +115,7 @@ function Updatepassword(props) {
                         </div>
                     </div>
 
-                </div> : (<h3>Sorry! The token is invalid or link is Expired </h3>)}
+                </div> 
 
             </div>
 
