@@ -91,6 +91,11 @@ function Register(props) {
                                   Forgot Password?
                                 </Link>
                             </div>
+                            <div className="text-center">
+                                <Link to='/login' className="small">
+                                Already have an account? Login!
+                                </Link>
+                            </div>
                         </div>
                     </div>
                     <div className="col-lg-5 d-none d-lg-block ">
