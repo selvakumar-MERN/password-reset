@@ -22,7 +22,7 @@ function Register(props) {
     }
      const submit=(e)=>{
         e.preventDefault()
-        axios.post('https://password-reset-0m2v.onrender.com',Users) 
+        axios.post('https://password-reset-0m2v.onrender.com/user/register',Users) 
        
        .then((res)=>{
        
