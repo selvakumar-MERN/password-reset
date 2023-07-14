@@ -10,7 +10,7 @@ function Forgotpassword(props) {
     const [userEmail, setEmail] = useState(email)
     const [successMsg, setsuccess] = useState("")
     const [errorMsg, seterror] = useState("")
-
+    const [load,setload]=useState(true)
     const handler = (e) => {
         const { name, value } = e.target;
         setEmail({ ...userEmail, [name]: value })
@@ -21,11 +21,13 @@ function Forgotpassword(props) {
             .then((res) => {
                 seterror("")
                 setsuccess(res.data)
+                setload(true)
             })
             .catch((error) => {
                 const { data } = error.response
                 setsuccess("")
                 seterror(data)
+                setload(true)
             })
 
 
@@ -57,8 +59,9 @@ function Forgotpassword(props) {
                                                     {successMsg !== null ? <span className='text-success'>{successMsg}</span> : null}
                                                     {errorMsg !== null ? <span className='text-danger'>{errorMsg}</span> : null}
                                                 </div>
-                                                <button onClick={submit} className="btn btn-primary btn-user btn-block">
-                                                    Reset Password
+                                                <button onClick={(e)=>{submit(e);setload(false)}} className="btn btn-primary btn-user btn-block">
+                                                 { load ? <span> Reset Password</span> : <div className='spinner-border text-primary ' role='status'>
+                                                 </div>}
                                                 </button>
                                             </form>
                                             <hr></hr>
