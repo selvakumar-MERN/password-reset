@@ -60,7 +60,7 @@ function Forgotpassword(props) {
                                                     {errorMsg !== null ? <span className='text-danger'>{errorMsg}</span> : null}
                                                 </div>
                                                 <button onClick={(e)=>{submit(e);setload(false)}} className="btn btn-primary btn-user btn-block">
-                                                 { load ? <span> Reset Password</span> : <div className='spinner-border text-primary ' role='status'>
+                                                 { load ? <span> Reset Password</span> : <div className='spinner-border text-primary m-4 ' role='status'>
                                                  </div>}
                                                 </button>
                                             </form>
