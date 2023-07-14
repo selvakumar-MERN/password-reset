@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Forgotpassword from './Components/Forgotpassword/Forgotpassword';
 import Updatepassword from './Components/Updatepassword/Updatepassword';
 import Register from './Components/Register/Register';
+import Invalid from './Components/Invalid';
 
 function App() {
 
@@ -20,6 +21,10 @@ function App() {
         <Route exact
           path='/register'
           element={<Register/>} >
+        </Route>
+        <Route exact
+          path='/invalid'
+          element={<Invalid/>} >
         </Route>
       </Routes>
     </BrowserRouter>
