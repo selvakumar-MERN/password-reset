@@ -96,14 +96,16 @@ function Updatepassword(props) {
                                                 <input type="password" className="form-control form-control-user" id='confirmpass' onChange={handler} name='confirmpassword' placeholder="Re-enter Password"></input>
                                             </div>
                                             <div className='m-2'>
-                                                {successMsg !== null ? <span className='text-success'>{successMsg}</span> : null}
+                                                {successMsg !== null ? <span className='text-success'>{successMsg} </span> : null}
                                                 {errorMsg !== null ? <span className='text-danger'>{errorMsg}</span> : null}
                                             </div>
                                             <button onClick={(e)=>{submit(e);setload(false)}} className="btn btn-primary btn-user btn-block">
                                             { load ? <span> Reset Password</span> : <div className='spinner-border text-primary ' role='status'>
                                                  </div>}
                                             </button>
-
+                                            <div>
+                                            {successMsg !== null ? <a href='https://password-reset-task01.netlify.app/login'>Login</a>: null }
+                                            </div>
                                         </form>
                                         <hr></hr>
                                     </div>
